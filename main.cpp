@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
-
 #include <chrono>
 
 #include "header.h"
@@ -28,6 +27,7 @@ int main()
         vetor_busca_1[i] = rand();
     }
 
+    //busca sequencial
 
     int n_achados = 0;
 
@@ -55,6 +55,42 @@ int main()
     cout << "Tempo demorado em segundos: " << t1_seg;
     cout << " segundos" << endl;
 
+
+    cout << "--------------" << endl;
+
+    //busca binaria
+    int ordenado_vetor_dados_1[tamanho_v_1];
+    for(int i = 0; i < tamanho_v_1; i++)
+    {
+        ordenado_vetor_dados_1[i] = vetor_dados_1[i];
+    }
+
+    //ordenando o vetor para poder aplicar a busca binaria
+    mergeSort(ordenado_vetor_dados_1, 0, tamanho_v_1 - 1);
+
+    n_achados = 0;
+
+    auto t2_comeco = chrono::high_resolution_clock::now();
+    ios_base::sync_with_stdio(false);
+    for(int i = 0; i < tamanho_b_1; i++)
+    {
+        if(busca_binaria(ordenado_vetor_dados_1, 0, tamanho_v_1 - 1, vetor_busca_1[i]) >= 0)
+        {
+            n_achados++;
+        }
+    }
+    auto t2_fim = chrono::high_resolution_clock::now();
+
+    auto t2_ms = chrono::duration_cast<chrono::milliseconds>(t2_fim - t2_comeco);
+
+    double t2_seg = chrono::duration_cast<chrono::nanoseconds>(t2_fim - t2_comeco).count();
+    t2_seg *= 1e-9;
+
+
+    cout << n_achados << endl;
+    cout << t2_ms.count() << "ms\n";
+    cout << "Tempo demorado em segundos: " << t2_seg;
+    cout << " segundos" << endl;
 
 return 0;
 }
