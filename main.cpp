@@ -2,14 +2,16 @@
 #include <cstdlib>
 #include <time.h>
 
+#include <chrono>
+
 #include "header.h"
 
 using namespace std;
 
 int main()
 {
-    int tamanho_v_1 = 10000;
-    int tamanho_b_1 = 500;
+    int tamanho_v_1 = 100000;
+    int tamanho_b_1 = 5000;
 
     srand(time(0));
 
@@ -29,6 +31,10 @@ int main()
 
     int n_achados = 0;
 
+    auto t1_comeco = chrono::high_resolution_clock::now();
+    //unsync entrada/saida
+    ios_base::sync_with_stdio(false);
+
     for(int i = 0; i < tamanho_b_1; i++)
     {
         if(busca_sequencial(vetor_dados_1, tamanho_v_1, vetor_busca_1[i]) >= 0)
@@ -36,12 +42,19 @@ int main()
             n_achados++;
         }
     }
+    auto t1_fim = chrono::high_resolution_clock::now();
+
+    auto t1_ms = chrono::duration_cast<chrono::milliseconds>(t1_fim - t1_comeco);
+
+    double t1_seg = chrono::duration_cast<chrono::nanoseconds>(t1_fim - t1_comeco).count();
+    t1_seg *= 1e-9;
 
 
-cout << n_achados << endl;
+    cout << n_achados << endl;
+    cout << t1_ms.count() << "ms\n";
+    cout << "Tempo demorado em segundos: " << t1_seg;
+    cout << " segundos" << endl;
 
-
-cout << "yey2" << endl;
 
 return 0;
 }
