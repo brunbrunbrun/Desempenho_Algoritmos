@@ -128,5 +128,41 @@ int main()
     cout << "Tempo demorado em segundos: " << t3_seg;
     cout << " segundos" << endl;
 
+
+    //arvore AVL
+    cout << "---------" << endl;
+    no_avl* arvore_avl = NULL;
+
+    //inserindo o vetor na arvore avl
+    for(int i = 0; i < tamanho_v_1; i++)
+    {
+        insertNode_avl(arvore_avl, vetor_dados_1[i]);
+    }
+
+
+    n_achados = 0;
+
+    auto t4_comeco = chrono::high_resolution_clock::now();
+    ios_base::sync_with_stdio(false);
+    for(int i = 0; i < tamanho_b_1; i++)
+    {
+        if(searchNode_avl(vetor_busca_1[i], arvore_avl) != NULL)
+        {
+            n_achados++;
+        }
+    }
+    auto t4_fim = chrono::high_resolution_clock::now();
+
+    auto t4_ms = chrono::duration_cast<chrono::milliseconds>(t4_fim - t4_comeco);
+
+    double t4_seg = chrono::duration_cast<chrono::nanoseconds>(t4_fim - t4_comeco).count();
+    t4_seg *= 1e-9;
+
+    cout << n_achados << endl;
+    cout << t4_ms.count() << "ms\n";
+    cout << "Tempo demorado em segundos: " << t4_seg;
+    cout << " segundos" << endl;
+
+
 return 0;
 }

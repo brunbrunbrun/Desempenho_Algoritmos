@@ -55,5 +55,6 @@ no_avl *rightRotate(no_avl *y);
 no_avl *leftRotate(no_avl *x);
 int getBalance(no_avl *n);
 no_avl *insertNode_avl(no_avl* node, int data);
+no_avl* searchNode_avl(int v, no_avl* node);
 
 #endif

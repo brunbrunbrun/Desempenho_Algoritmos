@@ -90,3 +90,20 @@ no_avl *insertNode_avl(no_avl* node, int data)
     return node;
 
 }
+
+no_avl* searchNode_avl(int v, no_avl* node)
+{
+    if(node == NULL)
+    {
+        return NULL;
+    }
+    if(v == node->data)
+    {
+        return node;
+    }
+    if(v < node->data)
+    {
+        return searchNode_avl(v, node->left);
+    }
+    return searchNode_avl(v, node->right);
+}
