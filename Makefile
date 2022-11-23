@@ -1,5 +1,5 @@
-main: main.o busca_sequencial.o busca_binaria.o arvore_b_busca.o
-	g++ main.o busca_sequencial.o busca_binaria.o arvore_b_busca.o -static-libgcc -static-libstdc++ -o main.exe
+main: main.o busca_sequencial.o busca_binaria.o arvore_b_busca.o arvore_avl.o
+	g++ main.o busca_sequencial.o busca_binaria.o arvore_b_busca.o arvore_avl.o -static-libgcc -static-libstdc++ -o main.exe
 
 main.o: main.cpp header.h
 	g++ main.cpp -static-libgcc -static-libstdc++ -c
@@ -12,6 +12,9 @@ busca_binaria.o: busca_binaria.cpp
 
 arvore_b_busca.o: arvore_b_busca.cpp
 	g++ arvore_b_busca.cpp -static-libgcc -static-libstdc++ -c
+
+arvore_avl.o: arvore_avl.cpp
+	g++ arvore_avl.cpp -static-libgcc -static-libstdc++ -c
 
 clean:
 	rm *.o
