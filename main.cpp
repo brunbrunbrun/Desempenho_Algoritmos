@@ -92,5 +92,41 @@ int main()
     cout << "Tempo demorado em segundos: " << t2_seg;
     cout << " segundos" << endl;
 
+
+
+    //arvore binaria de busca
+    cout << "---------" << endl;
+    no_b* arvore_b_b = NULL;
+
+    //inserindo o vetor aleatorio na arvore
+    for(int i = 0; i < tamanho_v_1; i++)
+    {
+        insertNode_b(vetor_dados_1[i], arvore_b_b);
+    }
+
+
+    n_achados = 0;
+
+    auto t3_comeco = chrono::high_resolution_clock::now();
+    ios_base::sync_with_stdio(false);
+    for(int i = 0; i < tamanho_b_1; i++)
+    {
+        if(searchNode_b(vetor_busca_1[i], arvore_b_b) != NULL)
+        {
+            n_achados++;
+        }
+    }
+    auto t3_fim = chrono::high_resolution_clock::now();
+
+    auto t3_ms = chrono::duration_cast<chrono::milliseconds>(t3_fim - t3_comeco);
+
+    double t3_seg = chrono::duration_cast<chrono::nanoseconds>(t3_fim - t3_comeco).count();
+    t3_seg *= 1e-9;
+
+    cout << n_achados << endl;
+    cout << t3_ms.count() << "ms\n";
+    cout << "Tempo demorado em segundos: " << t3_seg;
+    cout << " segundos" << endl;
+
 return 0;
 }
