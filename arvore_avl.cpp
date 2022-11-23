@@ -72,7 +72,7 @@ no_avl *insertNode_avl(no_avl* node, int data)
     if(balance > 1 && data < node->left->data)
         return rightRotate(node);
 
-    if(balance < -1 && data < node->right->data)
+    if(balance < -1 && data > node->right->data)
         return leftRotate(node);
 
     if(balance > 1 && data > node->left->data)
@@ -81,7 +81,7 @@ no_avl *insertNode_avl(no_avl* node, int data)
         return rightRotate(node);
     }
 
-    if(balance < -1 && data > node->right->data)
+    if(balance < -1 && data < node->right->data)
     {
         node->right = rightRotate(node->right);
         return leftRotate(node);
