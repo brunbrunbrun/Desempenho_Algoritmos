@@ -136,7 +136,7 @@ int main()
     //inserindo o vetor na arvore avl
     for(int i = 0; i < tamanho_v_1; i++)
     {
-        insertNode_avl(arvore_avl, vetor_dados_1[i]);
+        arvore_avl = insertNode_avl(arvore_avl, vetor_dados_1[i]);
     }
 
 
