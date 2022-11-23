@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     int tamanho_v_1 = 100000;
-    int tamanho_b_1 = 5000;
+    int tamanho_b_1 = 100000;
 
     srand(time(0));
 
