@@ -1,3 +1,12 @@
+/*
+Trabalho 2 da materia de Estrutura de dados 2022/2
+Implementando algoritmos de busca para analizar seu tempo de execução
+
+Alunos:
+Bruno Belo
+Lucas Freitas
+Matheus Parizotto
+*/
 #include <iostream>
 #include <cstdlib>
 #include <time.h>
@@ -9,17 +18,18 @@ using namespace std;
 
 int main()
 {
+    //tamanho dos vetores de dados a serem inseridos e de dados a serem buscados
     int tamanho_v_1 = 100000;
     int tamanho_b_1 = 100000;
 
     srand(time(0));
 
+    //inserção de numeros aleatorios nos vetores
     int vetor_dados_1[tamanho_v_1];
     for(int i = 0; i < tamanho_v_1; i++)
     {
         vetor_dados_1[i] = rand();
     }
-
 
     int vetor_busca_1[tamanho_b_1];
     for(int i = 0; i < tamanho_b_1; i++)
@@ -27,8 +37,13 @@ int main()
         vetor_busca_1[i] = rand();
     }
 
-    //busca sequencial
 
+    //BUSCA SEQUENCIAL
+    cout << "--------------" << endl;
+    cout << "BUSCA SEQUENCIAL" << endl;
+
+    //o numero de itens "achados" é contabilizado apenas para assegurar que
+    //todos os algoritmos estão funcionando corretamente.
     int n_achados = 0;
 
     auto t1_comeco = chrono::high_resolution_clock::now();
@@ -50,15 +65,13 @@ int main()
     t1_seg *= 1e-9;
 
 
-    cout << n_achados << endl;
-    cout << t1_ms.count() << "ms\n";
-    cout << "Tempo demorado em segundos: " << t1_seg;
-    cout << " segundos" << endl;
-
-
+    cout << "Quantidade encontrada: " << n_achados << endl;
+    cout << "Tempo demorado em milisegs: " << t1_ms.count() << " ms\n";
+    cout << "Tempo demorado em segundos: " << t1_seg << " seg\n";
     cout << "--------------" << endl;
 
-    //busca binaria
+    //BUSCA BINARIA
+    cout << "BUSCA BINARIA" << endl;
     int ordenado_vetor_dados_1[tamanho_v_1];
     for(int i = 0; i < tamanho_v_1; i++)
     {
@@ -87,15 +100,15 @@ int main()
     t2_seg *= 1e-9;
 
 
-    cout << n_achados << endl;
-    cout << t2_ms.count() << "ms\n";
-    cout << "Tempo demorado em segundos: " << t2_seg;
-    cout << " segundos" << endl;
+    cout << "Quantidade encontrada: " << n_achados << endl;
+    cout << "Tempo demorado em milisegs: " << t2_ms.count() << " ms\n";
+    cout << "Tempo demorado em segundos: " << t2_seg << " seg\n";
+    cout << "--------------" << endl;
 
 
 
-    //arvore binaria de busca
-    cout << "---------" << endl;
+    //ARVORE BINARIA DE BUSCA
+    cout << "ARVORE BINARIA DE BUSCA" << endl;
     no_b* arvore_b_b = NULL;
 
     //inserindo o vetor aleatorio na arvore
@@ -123,14 +136,14 @@ int main()
     double t3_seg = chrono::duration_cast<chrono::nanoseconds>(t3_fim - t3_comeco).count();
     t3_seg *= 1e-9;
 
-    cout << n_achados << endl;
-    cout << t3_ms.count() << "ms\n";
-    cout << "Tempo demorado em segundos: " << t3_seg;
-    cout << " segundos" << endl;
+    cout << "Quantidade encontrada: " << n_achados << endl;
+    cout << "Tempo demorado em milisegs: " << t3_ms.count() << " ms\n";
+    cout << "Tempo demorado em segundos: " << t3_seg << " seg\n";
+    cout << "--------------" << endl;
 
 
-    //arvore AVL
-    cout << "---------" << endl;
+    //ARVORE AVL
+    cout << "ARVORE AVL" << endl;
     no_avl* arvore_avl = NULL;
 
     //inserindo o vetor na arvore avl
@@ -158,10 +171,10 @@ int main()
     double t4_seg = chrono::duration_cast<chrono::nanoseconds>(t4_fim - t4_comeco).count();
     t4_seg *= 1e-9;
 
-    cout << n_achados << endl;
-    cout << t4_ms.count() << "ms\n";
-    cout << "Tempo demorado em segundos: " << t4_seg;
-    cout << " segundos" << endl;
+    cout << "Quantidade encontrada: " << n_achados << endl;
+    cout << "Tempo demorado em milisegs: " << t4_ms.count() << " ms\n";
+    cout << "Tempo demorado em segundos: " << t4_seg << " seg\n";
+    cout << "--------------" << endl;
 
 
 return 0;
